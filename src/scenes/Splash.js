@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, Button, } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, TextInput } from 'react-native';
 import yeet from '../../images/yeet520.png';
 import * as firebase from 'firebase';
 
@@ -9,7 +9,20 @@ const firebaseConfig = {
   databaseURL: "https://yeet-54e58.firebaseio.com/"
 };
 
+function writeNewUser() {
+  let newUserKey = firebase.database().ref().child('users').push().key
+
+  // Write the new user data simultaneously in the users list
+  var updates = {};
+  updates['/users/' + newUserKey] = newUserKey;
+
+  return firebase.database().ref().update(updates);
+}
+
 firebase.initializeApp(firebaseConfig);
+var database = firebase.database();
+writeNewUser();
+
 
 class Splash extends Component {
   static navigationOptions = {
@@ -26,12 +39,6 @@ class Splash extends Component {
 
   render() {
 
-    function pushInt(num) {
-      firebase.database().ref('numbers/' + num).set({
-        count: num
-      });
-    }
-
     return (
       <View style={styles.container}>
         <Image source={yeet} style={styles.image}></Image>
@@ -40,7 +47,7 @@ class Splash extends Component {
         </Text>
         <View style={styles.button}>
           <Button
-            onPress={() => {pushInt(5); this.props.navigation.navigate('home')}}
+            onPress={() => this.props.navigation.navigate('home')}
             title="Start yeetin'"
             color="#ffff"
             accessibilityLabel="Login button"
