@@ -272,7 +272,6 @@ _hasKey = async () => {
 getAnimalName = (value) => {
   hashedValue = stringHash(value) % (animalNames.length - 1);
   return animalNames[hashedValue];
-
 }
 
 
