@@ -291,6 +291,7 @@ class Splash extends Component {
   componentWillMount = async () => {
     //AsyncStorage.clear();
     firebase.initializeApp(firebaseConfig);
+    
     const value = await AsyncStorage.getItem('login');
     if (value == null) {
       writeNewUser();
@@ -305,7 +306,6 @@ class Splash extends Component {
   }
 
   render() {
-
     return (
       <View style={styles.container}>
         <Image source={yeet} style={styles.image}></Image>
