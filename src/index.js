@@ -14,5 +14,8 @@ export default createSwitchNavigator({
     me: createStackNavigator({
       profile: Scenes.Profile
     })
+  }),
+  add: createStackNavigator({
+    input: Scenes.InputPage
   })
 });

@@ -6,6 +6,7 @@ class Register extends Component {
     return (
       <View>
         <Text>Register!</Text>
+        
       </View>
     );
   }
