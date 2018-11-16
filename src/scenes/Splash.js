@@ -247,6 +247,14 @@ writeNewUser = async () => {
   return firebase.database().ref().update(updates);
 }
 
+writePost = async (message) => {
+  let newPostKey = await firebase.database().ref().child('posts').push().key;
+  firebase.database().ref().child('posts/' + newPostKey).set({
+    message,
+    name: getAnimalName(newPostKey)});
+  //database.ref('posts/' + newPostKey).set()
+}
+
 _storeData = async (value) => {
   try {
     await AsyncStorage.setItem('login', value);

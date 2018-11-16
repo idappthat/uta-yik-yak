@@ -10,11 +10,12 @@ class Home extends Component {
     super(props);
 
     this.state = this.props;
+    const {params} = this.props.navigation.state;
   }
 
   componentDidMount() {
-
   }
+
   render() {
     return (
       <View>
